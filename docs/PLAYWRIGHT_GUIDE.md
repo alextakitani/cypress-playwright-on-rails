@@ -66,7 +66,14 @@ e2e/
 ### Playwright Configuration
 
 `rake playwright:run` and `rake playwright:open` start the Rails server on a free port (or
-`CYPRESS_RAILS_PORT`) and export its URL to Playwright as `BASE_URL`, so read it in the config:
+`CYPRESS_RAILS_PORT`) and export its URL to Playwright as `BASE_URL`, so read it in the config.
+They launch `playwright test` through yarn or npx; when the config lives elsewhere or Playwright
+needs a different Node, set the whole command (`playwright:open` appends `--ui`):
+
+```ruby
+# config/initializers/cypress_on_rails.rb (or CYPRESS_RAILS_PLAYWRIGHT_COMMAND in the environment)
+c.playwright_command = 'npx playwright test --config e2e/playwright.config.ts'
+```
 
 ```js
 // playwright.config.js
