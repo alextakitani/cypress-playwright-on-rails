@@ -79,6 +79,8 @@ e2e/
 
 `rake playwright:run` and `rake playwright:open` start the Rails server on a free port (or
 `CYPRESS_RAILS_PORT`) and export its URL to Playwright as `BASE_URL`, so read it in the config.
+The exported `BASE_URL` replaces any `BASE_URL` already set in your shell, for the Playwright
+process only.
 They launch `playwright test` through yarn or npx; when the config lives elsewhere or Playwright
 needs a different Node, set the whole command (`playwright:open` appends `--ui`):
 
