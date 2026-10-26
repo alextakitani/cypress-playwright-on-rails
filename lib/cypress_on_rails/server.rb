@@ -701,6 +701,8 @@ module CypressOnRails
 
       launcher = %w[yarn npx].find { |command| command_exists?(command) }
       [launcher, 'playwright', 'test'].compact
+    rescue ArgumentError => e
+      raise ArgumentError, "playwright_command (or CYPRESS_RAILS_PLAYWRIGHT_COMMAND) is invalid: #{e.message}"
     end
 
     # Cypress receives the URL through --config; Playwright has no such flag,

@@ -81,8 +81,11 @@ e2e/
 `CYPRESS_RAILS_PORT`) and export its URL to Playwright as `BASE_URL`, so read it in the config.
 The exported `BASE_URL` replaces any `BASE_URL` already set in your shell, for the Playwright
 process only.
-They launch `playwright test` through yarn or npx; when the config lives elsewhere or Playwright
-needs a different Node, set the whole command (`playwright:open` appends `--ui`):
+
+They launch `playwright test` through yarn or npx. When the config lives elsewhere or Playwright
+needs a different Node, set the whole command as a single string (`playwright:open` appends
+`--ui`). Because of that appended `--ui`, the command has to accept `playwright test` arguments;
+a package script needs its own pass-through, such as `npm run e2e --`:
 
 ```ruby
 # config/initializers/cypress_on_rails.rb (or CYPRESS_RAILS_PLAYWRIGHT_COMMAND in the environment)
